@@ -108,6 +108,11 @@ class Email {
 	 */
 
 	public function Email($filename, $subject, $to) {
+		if(!file_exists($filename)) {
+			printf("Specified file %s not exists.\n", $filename);
+			$this->ret = false;
+			return;
+		}
 		$this->timestamp = time();
 
 		$text = 'This is automatic email generated for Kindle.';
