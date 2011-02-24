@@ -13,7 +13,11 @@ LICENSE
  * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
 
-WARRANTY AND USAGE
+USAGE
+ * Just run comics.php
+ * It's recommended to add this script to CRON, to 8am and 1pm CET.
+
+WARRANTY
  * This program is shared with no warranty
  * This program is intended for personal use only
 
