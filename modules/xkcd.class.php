@@ -88,7 +88,7 @@ class xkcd {
 </head>
 <h2>'.$this->title.'</h2>
 <p class="centered"><img src="'.$this->idref.'.gif" /></p>
-<p class="centered">'.clearUTF($item[2]).'</p>
+<p class="centered">'.$item[2].'</p>
 </div>
 <mbp:pagebreak/>
 </body>
