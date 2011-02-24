@@ -66,7 +66,7 @@ class rencin {
 				if($img !== false) {
 					/** Check comics author */
 					if(preg_match('/<div id="jokeAuthor">([^<]+)<\/div>/i', $html, $t)) {
-						$this->title = clearUTF($t[1]).' (cs)';
+						$this->title = $t[1].' (cs)';
 					} else {
 						$this->title = 'Jak to vidí Vladimír Renčín (cs)';
 					}
