@@ -1,0 +1,23 @@
+Automatic daily comics grabber for Kindle, with modules support.
+
+INSTALL
+ * Change your Kindle address in comics.php
+ * Modify modules, you want to receive in comics.php
+ * Change sender email in email.class.php - You must allow this address in you Amazon account
+ * ^^ All these steps are marked as @BEFORE-FIRST-START, use grep to find them all
+ * Download kindlegen from Amazon site and put kindlegen file in same directory, as comics.php
+
+LICENSE
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+
+WARRANTY AND USAGE
+ * This program is shared with no warranty
+ * This program is intended for personal use only
+
+SEE ALSO
+ * Git repository: https://github.com/Georgo/daily-comics-to-kindle
+ * Kindle Publishing Programs: http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000234621
+ * GNU General Public License, version 2: http://www.gnu.org/licenses/gpl-2.0.html
