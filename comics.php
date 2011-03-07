@@ -43,6 +43,7 @@ $modules = array(
 	'geekandpoke',
 	'wulffmorgenthaler',
 	'calvinandhobbes',
+	'randomdomain',
 	'xkcd',
 	'xkcdcz',
 	'kemel',

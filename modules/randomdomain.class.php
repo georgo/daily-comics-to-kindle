@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class for downloading Rencin comics from novinky.cz
+ * Class for downloading random-domain.com comics
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -14,9 +14,8 @@
  * @origin https://github.com/Georgo/daily-comics-to-kindle
  */
 
-
-class rencin {
-	public $idref = 'rencin';
+class randomdomain {
+	public $idref = 'randomdomain';
 	public $title = null;
 	public $manifest = array();
 
@@ -25,15 +24,15 @@ class rencin {
 			$this->title = file_get_contents($dir.'/'.$this->idref.'.title');
 			$this->manifest = array(array(
 				'id' => 1,
-				'filename' => $this->idref.'.gif',
-				'content-type' => 'image/gif'
+				'filename' => $this->idref.'.jpg',
+				'content-type' => 'image/jpeg'
 			));
 			return true;
 		}
 
-		/** Download comics front page */
+		/** Download frontpage */
 		$c = curl_init();
-		curl_setopt($c, CURLOPT_URL, 'http://novinky.cz/pictureByDate?galleryId=131&date='.date('Ymd'));
+		curl_setopt($c, CURLOPT_URL, 'http://random-domain.com/comic.php');
 		curl_setopt($c, CURLOPT_HEADER, false);
 		curl_setopt($c, CURLOPT_USERAGENT, 'KindleGenerator/1.0');
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
@@ -46,8 +45,9 @@ class rencin {
 			return false;
 		}
 
-		/** Grab comics image */
-		if(preg_match('/<img src="(http:\/\/media\.novinky\.cz[^"]+)".*alt="([^"]*)" \/>/i', $html, $item)) {
+		/** Grab random-domain comics image */
+		if(preg_match('/<img src="(http:\/\/www\.random\-domain\.com\/img\/comic\/[0-9]+\.jpg)"/i', $html, $item)) {
+			unset($html);
 			if(file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $item[1]) {
 					echo $this->idref.' is old'."\n";
 					return false;
@@ -64,32 +64,27 @@ class rencin {
 				unset($c);
 			
 				if($img !== false) {
-					/** Check comics author */
-					if(preg_match('/<div id="jokeAuthor">([^<]+)<\/div>/i', $html, $t)) {
-						$this->title = $t[1].' (cs)';
-					} else {
-						$this->title = 'Jak to vidí Vladimír Renčín (cs)';
-					}
-					
-					file_put_contents($dir.'/'.$this->idref.'.gif', $img);
+					$this->title = 'Random Domain';
+
+					file_put_contents($dir.'/'.$this->idref.'.jpg', $img);
+
 					$this->manifest = array(array(
 						'id' => 1,
-						'filename' => $this->idref.'.gif',
-						'content-type' => 'image/gif'
+						'filename' => $this->idref.'.jpg',
+						'content-type' => 'image/jpeg'
 					));
 
 					$code = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <title>'.$this->title.'</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <link rel="stylesheet" href="comics.css" type="text/css" />
 <body>
 <div>
 </head>
 <h2>'.$this->title.'</h2>
-<p class="centered"><img src="'.$this->idref.'.gif" /></p>
-<p class="centered">'.$item[2].'</p>
+<p class="centered"><img src="'.$this->idref.'.jpg" /></p>
 </div>
 <mbp:pagebreak/>
 </body>
