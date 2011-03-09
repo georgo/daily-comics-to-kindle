@@ -14,7 +14,7 @@
  * @origin https://github.com/Georgo/daily-comics-to-kindle
  */
 
-class garfield {
+class redmeat {
 	public $idref = 'redmeat';
 	public $title = null;
 	public $manifest = array();
