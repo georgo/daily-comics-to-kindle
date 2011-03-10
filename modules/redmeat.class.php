@@ -46,7 +46,7 @@ class redmeat {
 		}
 
 		/** Grab comics image */
-		if(preg_match('/<div class="stripDate">([^<]+)</div> /i', $html, $change)) {
+		if(preg_match('/<div class="stripDate">([^<]+)<\/div>/i', $html, $change)) {
 			unset($html);
 			if(file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $change[1]) {
 					echo $this->idref.' is old'."\n";
