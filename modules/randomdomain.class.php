@@ -46,7 +46,7 @@ class randomdomain {
 		}
 
 		/** Grab random-domain comics image */
-		if(preg_match('/<img src="(http:\/\/www\.random\-domain\.com\/img\/comic\/[0-9]+\.jpg)"/i', $html, $item)) {
+		if(preg_match('/<img src="(http:\/\/random\-domain\.com\/img\/comic\/[0-9]+\.jpg)"/i', $html, $item)) {
 			unset($html);
 			if(file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $item[1]) {
 					echo $this->idref.' is old'."\n";

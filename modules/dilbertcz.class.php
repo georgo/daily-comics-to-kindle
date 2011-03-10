@@ -1,4 +1,4 @@
-<?php
+		<?php
 
 /**
  * Class for downloading Dilbert comics from idnes.cz
@@ -47,7 +47,7 @@ class dilbertcz {
 		}
 
 		/** Grab comics image */
-		if(preg_match('/"(http:\/\/i\.idnes\.cz.*\/maxi\/.*dilb.*\.gif)"/i', $html, $item)) {
+		if(preg_match('/"(http:\/\/i\.idnes\.cz.*\/.*dilb.*\.gif)"/i', $html, $item)) {
 			unset($html);
 
 			if(file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $item[1]) {

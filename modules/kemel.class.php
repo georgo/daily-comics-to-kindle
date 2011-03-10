@@ -45,8 +45,8 @@ class kemel {
 			return false;
 		}
 
-		/** Grap comics image */
-		if(preg_match('/"(http:\/\/i\.idnes\.cz.*\/maxi\/.*\.gif)"/i', $html, $item)) {
+		/** Grab comics image */
+		if(preg_match('/"(http:\/\/i\.idnes\.cz.*\/.*_kem\.gif)"/i', $html, $item)) {
 			unset($html);
 
 			if(file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $item[1]) {
