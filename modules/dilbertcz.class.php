@@ -1,4 +1,4 @@
-		<?php
+<?php
 
 /**
  * Class for downloading Dilbert comics from idnes.cz
