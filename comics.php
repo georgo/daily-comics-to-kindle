@@ -44,6 +44,7 @@ $modules = array(
 	'wulffmorgenthaler',
 	'calvinandhobbes',
 	'randomdomain',
+	'redmeat',
 	'xkcd',
 	'xkcdcz',
 	'kemel',
