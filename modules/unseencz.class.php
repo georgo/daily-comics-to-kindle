@@ -56,12 +56,6 @@ class unseencz {
 		if(preg_match('/<link>(.*)<\/link>/i', $item, $tmp)) {
 			$unseenurl = $tmp[1];
 		}
-		                
-		if($unseenurl == '' || (file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $unseenurl)) {
-			echo $this->idref.' is old'."\n";
-                        return false;
-		}
-		file_put_contents('last/'.$this->idref, $unseenurl);
                                 
 		/** Download article with comics */
                 $c = curl_init();
@@ -77,10 +71,15 @@ class unseencz {
                 
 		if(preg_match('/<img src="(http:\/\/unseen.appspot.com\/strip\/[^"]+)">/i', $html, $item)) {
                     
-                    
 			$this->title = 'Unseen (cs)';
 			unset($html);	
 			$imgurl = $item[1];
+			
+			if($imgurl == '' || (file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $imgurl)) {
+				echo $this->idref.' is old'."\n";
+				return false;
+			}
+			file_put_contents('last/'.$this->idref, $imgurl);
 
 
 			$c = curl_init();
@@ -127,6 +126,7 @@ class unseencz {
 				file_put_contents($dir.'/'.$this->idref.'.title', $this->title);
 				return true;
 			}
+			return false;
 		}
                 return false;
         }
