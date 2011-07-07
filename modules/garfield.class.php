@@ -46,7 +46,7 @@ class garfield {
 		}
 
 		/** Grab comics image */
-		if(preg_match('/<link rel="image_src" href="(http:\/\/imgsrv.gocomics.com\/dim\/\?fh=[a-z0-9]+)" \/>/i', $html, $item)) {
+		if(preg_match('/<link rel="image_src" href="([^"]+)"/i', $html, $item)) {
 			unset($html);
 			if(file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $item[1]) {
 					echo $this->idref.' is old'."\n";
