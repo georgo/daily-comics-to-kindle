@@ -60,6 +60,7 @@ foreach($modules as $module) {
 		$x = new $module();
 		$ok = $x->generate($today);
 		if($ok) {
+			printf("Adding %s to release ...\n", $module);
 			$toc[$x->idref] = $x->title;
 			$manifest .= "\t".'<item id="'.$x->idref.'" media-type="application/xhtml+xml" href="'.$x->idref.'.html"/>'."\n";
 			if($firstpage == '') {
@@ -70,6 +71,8 @@ foreach($modules as $module) {
 			foreach($x->manifest as $_m) {
 				$manifest .= "\t".'<item id="'.$x->idref.'-'.$_m['id'].'" media-type="'.$_m['content-type'].'" href="'.$_m['filename'].'"/>'."\n";
 			}
+		} else {
+			printf("Module %s return empty response.\n", $module);
 		}
 	} else {
 		printf("Module '%s' not found.\n", $module);

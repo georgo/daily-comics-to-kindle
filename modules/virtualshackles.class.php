@@ -10,6 +10,7 @@
  * the License, or (at your option) any later version.
  *
  * @author Frantisek Tuma <tumaf@seznam.cz>, @Feainne
+ * @author Tomas Kopecny <tomas@kopecny.info>
  * @package daily-comics-to-kindle
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPL version 2
  * @origin https://github.com/Georgo/daily-comics-to-kindle
@@ -48,10 +49,15 @@ class virtualshackles {
 		}
             
 		/** Grap comics image */
-                if(preg_match('/\<div id=\"comicbox\">[^\>]*<img src=\"(\/img\/[^.]+.jpg)\".+alt=\"([^\"]*)\"[^\/]*\/>/isu', $html, $item)) {
+		if(preg_match('/\<meta property="og:image" content="([^"]+)"[ ]*/>/isu', $html, $item)) {
 			unset($html);
 			
-			$imgurl = 'http://www.virtualshackles.com'.$item[1];
+			$imgurl = $item[1];
+			$title = 'Virtual Shackles';
+
+			if(preg_match('/\<meta property="og:title" content="([^"]+)"[ ]*/>/isu', $html, $item)) {
+				$title .= ': '.$item[1];
+			}
 			
 			if($imgurl == '' || (file_exists('last/'.$this->idref) && file_get_contents('last/'.$this->idref) == $imgurl)) {
 				echo $this->idref.' is old'."\n";
@@ -70,9 +76,9 @@ class virtualshackles {
 			unset($c);
 		
 			if($img !== false) {
-                                file_put_contents('last/'.$this->idref, $imgurl);
+				file_put_contents('last/'.$this->idref, $imgurl);
                             
-				$this->title = 'Virtual Shackles: "'.$item[2].'"';
+				$this->title = $title;
 				file_put_contents($dir.'/'.$this->idref.'.jpg', $img);
                                 
 				$this->manifest = array(array(

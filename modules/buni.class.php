@@ -48,7 +48,7 @@ class buni {
 		}
             
 		/** Grap comics image */
-                if(preg_match('/\<img src=\"(http:\/\/bunicomic.com\/comics\/[^\.]+.jpg)\" alt=\"[^\"]*\" title=\"[^\"]*\" \/\>/i', $html, $item)) {
+		if(preg_match('/\<img src=\"(http:\/\/www\.bunicomic.com\/comics\/[^\.]+\.jpg)\" alt=\"[^\"]*\" title=\"[^\"]*\"[ ]*\/\>/i', $html, $item)) {
 			unset($html);
 			
 			$imgurl = preg_replace('/ /','%20',$item[1]);
