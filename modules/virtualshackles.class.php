@@ -49,13 +49,13 @@ class virtualshackles {
 		}
             
 		/** Grap comics image */
-		if(preg_match('/\<meta property="og:image" content="([^"]+)"[ ]*/>/isu', $html, $item)) {
+		if(preg_match('/\<meta property="og:image" content="([^"]+)"[ ]*\/\>/isu', $html, $item)) {
 			unset($html);
 			
 			$imgurl = $item[1];
 			$title = 'Virtual Shackles';
 
-			if(preg_match('/\<meta property="og:title" content="([^"]+)"[ ]*/>/isu', $html, $item)) {
+			if(preg_match('/\<meta property="og:title" content="([^"]+)"[ ]*\/\>/isu', $html, $item)) {
 				$title .= ': '.$item[1];
 			}
 			
