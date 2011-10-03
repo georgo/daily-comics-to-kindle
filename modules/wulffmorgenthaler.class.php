@@ -32,7 +32,7 @@ class wulffmorgenthaler {
 
 		/** Download today comics */
 		$c = curl_init();
-		curl_setopt($c, CURLOPT_URL, 'http://wulffmorgenthaler.com/strip/-WM_strip_DK_'.date('Ymd', time()-(60*60*24)).'.jpg');
+		curl_setopt($c, CURLOPT_URL, 'http://wulffmorgenthaler.com/img/strip/-WM_strip_DK_'.date('Ymd', time()-(60*60*24)).'.jpg');
 		curl_setopt($c, CURLOPT_HEADER, false);
 		curl_setopt($c, CURLOPT_USERAGENT, 'KindleGenerator/1.0');
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
